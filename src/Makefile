@@ -1,7 +1,7 @@
 DIR_FLAGS = -I ../lib
 
 libs = ../lib/*.a
-SRC = main.cpp test1.cpp test1.h ../lib/hashlibpp.h ../lib/libhl++.a
+SRC = main.cpp FileHandler.cpp FileHandler.h ../lib/hashlibpp.h ../lib/libhl++.a
 OBJECTS = $(SRC:.cpp=.o)
 
 EXE_NAME = hasher
