@@ -1,11 +1,16 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include<set>
+#include<vector>
 
 #include <hashlibpp.h>
 #include "FileHandler.h"
+#include "DictAttack.h"
 
 using namespace std;
+
+vector<string> DICTIONARIES = {};
 
 int main(int argc, char* argv[]){
     /*string s = "string to hash1";
@@ -22,14 +27,18 @@ int main(int argc, char* argv[]){
 
     FileHandler fHandler;
 
-    //List to place hashes in
-    vector<string>* hashList = new vector<string>();
-    int fileReading = fHandler.readHashList(inputFile, hashList);
+    //Read hashes
+    set<string>* hashList = new set<string>();
+    int fileReading = fHandler.readList(inputFile, hashList);
 
     if(fileReading == -1){
         cout << "Error: failed reading file " << inputFile << endl;
         exit(-1);
     }
 
-    cout << hashList << endl;
+    // ---- Attacks ----
+    DictAttack dAtt;
+    dAtt.findHashes(*hashList, cout);
+
+    cout << *hashList->begin() << endl;
 }
