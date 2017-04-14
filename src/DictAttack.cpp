@@ -1,7 +1,17 @@
 #include "DictAttack.h"
 
 int DictAttack::findHashes(set<string> &hashList, ostream& output){
-    int a = 43;
+    for(vector<vector<string> >::iterator iter = dictList.begin(); iter != dictList.end(); iter++){
+        for (string& s : *iter) {
+            tryHash(s, hashList, output);
+
+            /*
+            for(StringModifier* mod : modifierList){
+                vector<string> modifiedStrings;
+            }
+            */
+        }
+    }
 }
 
 int DictAttack::addDict(string fileName){
@@ -15,4 +25,11 @@ int DictAttack::addDict(string fileName){
 
 void DictAttack::clearDicts(){
     dictList.clear();
+}
+
+void DictAttack::addModifier(StringModifier* mod){
+    modifierList.push_back(mod);
+}
+void DictAttack::clearModifiers(){
+    modifierList.clear();
 }

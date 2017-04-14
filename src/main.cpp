@@ -7,10 +7,13 @@
 #include <hashlibpp.h>
 #include "FileHandler.h"
 #include "DictAttack.h"
+#include "NumModifier.h"
 
 using namespace std;
 
-vector<string> DICTIONARIES = {};
+string DICT_FOLDER = "../dicts/";
+
+vector<string> DICTIONARIES = {"english_unix"};
 
 int main(int argc, char* argv[]){
     /*string s = "string to hash1";
@@ -38,7 +41,13 @@ int main(int argc, char* argv[]){
 
     // ---- Attacks ----
     DictAttack dAtt;
-    dAtt.findHashes(*hashList, cout);
+    NumModifer numMod;
+    dAtt.addModifier(&numMod);
 
-    cout << *hashList->begin() << endl;
+    //Add dicts
+    for(string dict : DICTIONARIES){
+        dAtt.addDict(DICT_FOLDER + dict);
+    }
+
+    dAtt.findHashes(*hashList, cout);
 }
