@@ -1,7 +1,9 @@
 #include "Attack.h"
 
 bool Attack::tryHash(string& original, set<string>& hashList, ostream& output){
-    //output << "Testing string: " << original << endl;
+    #ifdef DEBUG
+        output << "Testing string: " << original << endl;
+    #endif
 
     string testHash = wrapper.getHashFromString(original);
 
@@ -10,7 +12,6 @@ bool Attack::tryHash(string& original, set<string>& hashList, ostream& output){
     if(res != hashList.end()){
         output << testHash << " : " << original << endl;
         hashList.erase(res);
-
         return true;
     }
 

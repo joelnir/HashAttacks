@@ -1,17 +1,32 @@
 #include "DictAttack.h"
 
 int DictAttack::findHashes(set<string> &hashList, ostream& output){
+    int hashC = hashList.size();
+
+    int foundC = 0;
     for(vector<vector<string> >::iterator iter = dictList.begin(); iter != dictList.end(); iter++){
         for (string& s : *iter) {
             tryHash(s, hashList, output);
 
-            /*
+            vector<string> modifiedStrings;
+
             for(StringModifier* mod : modifierList){
-                vector<string> modifiedStrings;
+                modifiedStrings = mod->getWords(s);
             }
-            */
+
+            modifiedStrings.push_back(s);
+
+            for(string testString : modifiedStrings){
+                //cout << tryHash(testString, hashList, output) << endl;
+                if(tryHash(testString, hashList, output)){
+                    output << "FOUND!" << endl;
+                    foundC++;
+                }
+            }
         }
     }
+
+    output << "Found " << foundC << " of " << hashC << endl;;
 }
 
 int DictAttack::addDict(string fileName){

@@ -1,3 +1,5 @@
+//#define DEBUG
+
 #include <iostream>
 #include <string>
 #include <stdlib.h>
@@ -42,6 +44,7 @@ int main(int argc, char* argv[]){
     // ---- Attacks ----
     DictAttack dAtt;
     NumModifer numMod;
+    numMod.setLimit(10);
     dAtt.addModifier(&numMod);
 
     //Add dicts
