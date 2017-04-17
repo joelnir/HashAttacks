@@ -1,7 +1,7 @@
 DIR_FLAGS = -I ../lib
 
 libs = ../lib/*.a
-SRC = main.cpp FileHandler.cpp FileHandler.h ../lib/hashlibpp.h ../lib/libhl++.a Attack.h DictAttack.h DictAttack.cpp StringModifier.h Attack.cpp NumModifier.h NumModifier.cpp
+SRC = main.cpp FileHandler.cpp FileHandler.h ../lib/hashlibpp.h ../lib/libhl++.a Attack.h DictAttack.h DictAttack.cpp StringModifier.h Attack.cpp NumModifier.h NumModifier.cpp SpecialCharModifier.h SpecialCharModifier.cpp
 OBJECTS = $(SRC:.cpp=.o)
 
 EXE_NAME = hasher

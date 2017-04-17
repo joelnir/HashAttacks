@@ -6,20 +6,19 @@ int DictAttack::findHashes(set<string> &hashList, ostream& output){
     int foundC = 0;
     for(vector<vector<string> >::iterator iter = dictList.begin(); iter != dictList.end(); iter++){
         for (string& s : *iter) {
-            tryHash(s, hashList, output);
-
             vector<string> modifiedStrings;
 
             for(StringModifier* mod : modifierList){
-                modifiedStrings = mod->getWords(s);
+                vector<string> newWords = mod->getWords(s);
+
+                //Append new modified words
+                modifiedStrings.insert(modifiedStrings.end(), newWords.begin(), newWords.end());
             }
 
             modifiedStrings.push_back(s);
 
             for(string testString : modifiedStrings){
-                //cout << tryHash(testString, hashList, output) << endl;
                 if(tryHash(testString, hashList, output)){
-                    output << "FOUND!" << endl;
                     foundC++;
                 }
             }

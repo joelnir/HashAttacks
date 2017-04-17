@@ -1,6 +1,8 @@
 #ifndef ATTACK
 #define ATTACK
 
+//#define DEBUG
+
 #include <iostream>
 #include <set>
 #include <hashlibpp.h>

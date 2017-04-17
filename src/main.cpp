@@ -1,5 +1,3 @@
-//#define DEBUG
-
 #include <iostream>
 #include <string>
 #include <stdlib.h>
@@ -10,12 +8,13 @@
 #include "FileHandler.h"
 #include "DictAttack.h"
 #include "NumModifier.h"
+#include "SpecialCharModifier.h"
 
 using namespace std;
 
 string DICT_FOLDER = "../dicts/";
 
-vector<string> DICTIONARIES = {"english_unix"};
+vector<string> DICTIONARIES = {"english_unix", "10k_most_common.txt", "elitehacker.txt", "german.txt"};
 
 int main(int argc, char* argv[]){
     /*string s = "string to hash1";
@@ -43,9 +42,13 @@ int main(int argc, char* argv[]){
 
     // ---- Attacks ----
     DictAttack dAtt;
+
     NumModifer numMod;
     numMod.setLimit(10);
     dAtt.addModifier(&numMod);
+
+    SpecialCharModifier charMod;
+    dAtt.addModifier(&charMod);
 
     //Add dicts
     for(string dict : DICTIONARIES){

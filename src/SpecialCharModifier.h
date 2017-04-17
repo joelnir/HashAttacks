@@ -9,9 +9,7 @@ using namespace std;
 class SpecialCharModifier: public StringModifier{
 public:
     vector<string> getWords(string& original) const;
-    void setLimit(int lim);
 private:
-    int limit = -1;
 };
 
 #endif
