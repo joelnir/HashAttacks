@@ -1,9 +1,16 @@
 #include "DictAttack.h"
+#include <time.h>
 
 int DictAttack::findHashes(set<string> &hashList, ostream& output){
     int hashC = hashList.size();
 
     int foundC = 0;
+    int processedC = 0;
+    int wordC = getWordC();
+
+    //For timing and output
+    clock_t lastPrint = clock();
+
     for(vector<vector<string> >::iterator iter = dictList.begin(); iter != dictList.end(); iter++){
         for (string& s : *iter) {
             vector<string> modifiedStrings;
@@ -22,10 +29,18 @@ int DictAttack::findHashes(set<string> &hashList, ostream& output){
                     foundC++;
                 }
             }
+
+            if((((float)(clock() - lastPrint))/CLOCKS_PER_SEC) > PRINT_PERIOD){
+                lastPrint = clock();
+
+                output << "Processed: " << processedC << " / " << wordC << " Found: " << foundC << endl;
+            }
+
+            processedC++;
         }
     }
 
-    output << "Found " << foundC << " of " << hashC << endl;;
+    output << "Found " << foundC << " of " << hashC << endl;
 }
 
 int DictAttack::addDict(string fileName){
@@ -46,4 +61,14 @@ void DictAttack::addModifier(StringModifier* mod){
 }
 void DictAttack::clearModifiers(){
     modifierList.clear();
+}
+
+int DictAttack::getWordC(){
+    int wordC = 0;
+
+    for(vector<string> dict: dictList){
+        wordC += dict.size();
+    }
+
+    return wordC;
 }

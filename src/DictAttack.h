@@ -23,6 +23,10 @@ private:
     vector<StringModifier*> modifierList;
     vector<vector<string> > dictList;
     FileHandler fHandler;
+    int getWordC();
+
+    //Print info about attack every PRINT_PERIOD'th second
+    double PRINT_PERIOD = 1;
 };
 
 #endif
